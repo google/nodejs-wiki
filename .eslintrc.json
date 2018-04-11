@@ -1,0 +1,35 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "script"
+  },
+  "extends": [
+    "google"
+  ],
+  "env": {
+    "node": true
+  },
+  "plugins": [],
+  "rules": {
+    "quotes": [
+      "error",
+      "single",
+      {
+        "avoidEscape": true,
+        "allowTemplateLiterals": true
+      }
+    ],
+    "indent": [
+      "error",
+      2,
+      {
+        "CallExpression": {
+          "arguments": 2
+        },
+        "MemberExpression": 2
+      }
+    ],
+    "prefer-arrow-callback": "error",
+    "require-jsdoc": "off"
+  }
+}

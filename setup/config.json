@@ -1,0 +1,5 @@
+{
+    "wikiname": "My Wiki",
+    "read-pages": "AUTH_REQUIRED",
+    "valid-emails": ["example@gmail.com"]
+}

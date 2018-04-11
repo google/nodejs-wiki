@@ -1,0 +1,84 @@
+<!--
+ Copyright 2018 Google Inc. All Rights Reserved.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<html>
+
+<head>
+    <title>Wiki</title>
+    <script src="src/wiki-engine.js"></script>
+    <link href="styles/wiki.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class='sidebar'>
+        <!-- <img src='' /> -->
+        <a href='?p=home'>Main Page</a>
+        <header>Tools</header>
+        <!-- <a href='?p=Special:Recent'>Recent Changes</a> -->
+        <a href='?p=Special:Documents'>All Pages</a>
+    </nav>
+    <nav class='top-navigation'>
+        <h1 id='title'>(loading title)</h1>
+        <div class='actions'>
+            <a id='discuss'>Discuss</a>
+            <span id='edit'>Edit</span>
+            <span id='history'>History</span>
+            <!-- TODO search -->
+            <!-- <input type='search' id='search' /> -->
+            &emsp;
+            <!-- TODO Authentication -->
+            <span id='login-welcome'>Welcome,
+                <a href='?p=user:Me' id='my-name'>user</a>&emsp;
+                <span id='login-exit'>Logout</span>
+            </span>
+            <span id='login-notauth'>Login</span>
+        </div>
+    </nav>
+    <div id='content'>(loading content)</div>
+
+    <div id='content-editor'>
+        <button id='cancel'>Cancel</button>
+        <div id='force-unlock'>
+            Someone else is currently editing this file, so it is locked.
+            You can forceably unlock this page for editing if
+            you want.
+            <br>
+            <button>Force Unlock</button>
+        </div>
+        <br>
+        <div contenteditable="true" id='editor'></div>
+        <div id='preview'></div>
+        <strong>What did you change?</strong>
+        <div id='commit' contenteditable="true"></div>
+        <br>
+
+        <button id='save'>Save</button>
+    </div>
+
+    <div id='content-pane-container'>
+        <b id='content-pane-close'>Close Content Pane</b>
+        <br>
+        <div id='content-pane'></div>
+    </div>
+
+    <footer>
+        <div class='update'>Last updated on
+            <i id='last-updated'>(loading date)</i>
+        </div>
+    </footer>
+</body>
+
+</html>

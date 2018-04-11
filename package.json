@@ -1,0 +1,47 @@
+{
+  "name": "firebase-wiki",
+  "description": "Wiki Engine powered by Firestore",
+  "version": "0.0.1",
+  "license": "Apache-2.0",
+  "author": "Nick Felker",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "scripts": {
+    "build-wiki": "./node_modules/parcel-bundler/bin/cli.js build index.html",
+    "clean": "rm -rf ./dist/",
+    "create-firebase-config": "firebase setup:web --json > ./setup/firebase-env.json",
+    "lint": "eslint --fix src/*.js",
+    "serve-local": "npm run clean && npm run build-wiki && firebase serve",
+    "serve": "npm run clean && npm run build-wiki && firebase deploy",
+    "test": "npm run test-build",
+    "test-build": "npm run clean && npm run lint && npm run build-wiki"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/actions-on-google/actions-on-google-nodejs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/actions-on-google/actions-on-google-nodejs/issues"
+  },
+  "homepage": "https://github.com/actions-on-google/actions-on-google-nodejs#readme",
+  "keywords": [
+    "wiki",
+    "firestore"
+  ],
+  "dependencies": {
+    "firebase": "^4.12.0",
+    "get-query-param": "^2.0.3",
+    "history": "^4.7.2",
+    "remark-html": "^7.0.0",
+    "remark-parse": "^5.0.0",
+    "textdiff-create": "1.0.3",
+    "textdiff-patch": "1.0.3",
+    "unified": "^6.1.6"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-google": "^0.9.1",
+    "parcel-bundler": "^1.9.7"
+  }
+}

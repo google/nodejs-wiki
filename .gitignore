@@ -1,0 +1,11 @@
+# Dependencies
+node_modules/
+# Secrets
+setup/firebase-env.json
+.firebaserc
+# Parceled files
+.cache/
+dist/
+dist-dev/
+# Misc
+firebase-debug.log

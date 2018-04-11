@@ -1,0 +1,241 @@
+/**
+ * Copyright 2018 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/* Include our fonts */
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700|Roboto:100,300,400,500,700|Overpass+Mono');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #fff;
+  margin: 0px;
+  margin-left: 200px;
+}
+
+h1 {
+  font-weight: 300;
+}
+
+.sidebar {
+  height: 100vh;
+  background-color: #fefefe;
+  margin-left: -200px;
+  display: inline-table;
+  width: 180px;
+  border-right: solid 1px #09f;
+  vertical-align: top;
+  position: absolute;
+}
+
+.sidebar a, .sidebar header {
+  padding-left: 4px;
+}
+
+.sidebar header {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: medium;
+  border-bottom: solid 1px #cccccc;
+  margin-top: 8px;
+}
+
+.top-navigation {
+  border-bottom: solid 1px black;
+  display: inline-block;
+  width: 100%;
+}
+
+h1#title {
+  padding-left: 40px;
+  display: inline-block;
+  padding-right: 120px;
+}
+
+h1.editable#title {
+  padding-left: 40px;
+  display: inline-block;
+  /* I like this font, with its slants. It's got a nice typewriter feel */
+  font-family: 'Overpass Mono', monospace;
+  border: solid 1px #09f;
+}
+
+.actions {
+  text-align: right;
+  display: inline-block;
+  font-weight: bold;
+  font-family: 'Roboto Condensed', sans-serif;
+  color: #333;
+}
+
+.actions span, .actions a {
+  margin-right: 16px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#content {
+  padding-left: 40px;
+  padding-right: 80px;
+  width: 800px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+footer {
+  border-top: solid 1px #999;
+  width: calc(100vw - 260px);
+  margin-left: 0px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+footer .update {
+  font-size: 9pt;
+  margin-top: 8px;
+}
+
+#editor {
+  font-family: 'Overpass Mono', monospace;
+  border: solid 1px #09f;
+  white-space: pre-line;
+}
+
+#editor, #preview {
+  width: calc(50% - 4px);
+  display: inline-block;
+}
+
+#commit {
+  width: 50em;
+  font-family: 'Overpass Mono', monospace;
+  border: solid 1px #09f;
+  font-size: 9pt;
+  display: inline-block;
+}
+
+#content-editor {
+  display: none;
+}
+
+#content-pane {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: calc(100vh - 220px);
+}
+
+#content-pane-container {
+  width: 300px;
+  display: none;
+  border: solid 1px #999;
+  padding: 16px;
+  float: right;
+  margin-right: 24px;
+}
+
+.card {
+  border: solid 1px #999;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  box-shadow: black 0px 1px 5px -2px;
+}
+
+.card h1 {
+  font-size: 12pt;
+  font-family: 'Roboto condensed';
+  margin-left: 8px;
+}
+
+.card footer {
+  font-size: 8pt;
+  margin-left: 16px;
+  border: none;
+  font-style: italic;
+}
+
+.infobox {
+  float: right;
+  background-color: #efefef;
+  padding: 4px;
+  border: solid 1px #999;
+  box-shadow: black 0px 1px 3px -1px;
+  margin-top: 8px;
+}
+
+.infobox img {
+  width: 200px;
+}
+
+.infobox li {
+  display: block;
+}
+
+.infobox i {
+  font-style: normal;
+  font-weight: 900;
+  font-size: 10pt;
+}
+
+.infobox span {
+  margin-left: 8px;
+  font-size: 10pt;
+}
+
+.infobox table {
+  width: 100%;
+}
+
+.infobox .heading {
+  text-transform: uppercase;
+  font-size: 8pt;
+  width: 100%;
+  background-color: #80DEEA;
+  text-align: center;
+}
+
+.infobox .title {
+  margin: 0px;
+  text-align: center;
+  font-size: 12pt;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.table-of-contents {
+  border: solid 1px #999;
+  background: #efefef;
+  padding: 4px;
+  width: 240px;
+  box-shadow: black 0px 2px 3px -2px;
+  background-color: white;
+}
+
+.table-of-contents ol {
+  padding-left: 16px;
+  padding-bottom: 6px;
+  padding-top: 2px;
+}
+
+/* http://jsfiddle.net/qGCUk/4/ */
+.table-of-contents ol {
+  counter-reset: item;
+}
+
+.table-of-contents li {
+  display: block;
+}
+
+.table-of-contents li:before {
+  content: counters(item, ".") " ";
+  counter-increment: item;
+}
