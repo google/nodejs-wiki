@@ -315,6 +315,7 @@ function loadWikiPage(pagename) {
       // Santizies user-entered commit message
       out += `<div class='card'>` +
           `<h1>${escapeUserInput(change.data().commit)}</h1>` +
+          `<span>By ${change.data().authorName} (${change.data().authorId})` +
           `<footer>Changed at ${changeUtcString}</footer>` +
           `</div>`;
     }
@@ -363,6 +364,8 @@ function loadWikiPage(pagename) {
           .set({
             delta: JSON.stringify(patch),
             commit: commit.innerText,
+            authorId: firebase.auth().currentUser.uid,
+            authorName: firebase.auth().currentUser.displayName,
           }).then((docRef) => {
             console.log(`Document updated @${timestamp}`);
           });
@@ -442,6 +445,7 @@ window.addEventListener('load', () => {
       document.querySelector('#my-name').textContent = displayName;
       if (config['valid-emails'] &&
           config['valid-emails'].indexOf(email) == -1) {
+        console.error('User is logged in, but they do not have permission to view this page');
         navigateToPage('?p=Special:Login');
       }
       document.querySelector('#login-notauth').style.display = 'none';

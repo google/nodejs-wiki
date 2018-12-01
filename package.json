@@ -10,10 +10,10 @@
   "scripts": {
     "build-wiki": "./node_modules/parcel-bundler/bin/cli.js build index.html",
     "clean": "rm -rf ./dist/",
-    "create-firebase-config": "firebase setup:web --json > ./setup/firebase-env.json",
+    "create-firebase-config": "./node_modules/.bin/firebase setup:web --json > ./setup/firebase-env.json",
     "lint": "eslint --fix src/*.js",
-    "serve-local": "npm run clean && npm run build-wiki && firebase serve",
-    "serve": "npm run clean && npm run build-wiki && firebase deploy",
+    "serve-local": "npm run clean && npm run build-wiki && ./node_modules/.bin/firebase serve",
+    "serve": "npm run clean && npm run build-wiki && ./node_modules/.bin/firebase deploy",
     "test": "npm run test-build",
     "test-build": "npm run clean && npm run lint && npm run build-wiki"
   },
@@ -42,6 +42,7 @@
   "devDependencies": {
     "eslint": "^4.19.1",
     "eslint-config-google": "^0.9.1",
+    "firebase-tools": "^6.1.1",
     "parcel-bundler": "^1.9.7"
   }
 }
