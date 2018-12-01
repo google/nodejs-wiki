@@ -351,36 +351,45 @@ function loadWikiPage(pagename) {
     title.contentEditable = true;
     title.classList.add('editable');
 
+    save.innerText = 'Save';
     save.onclick = () => {
       console.log(originalMarkdown, editor.innerText);
       const patch = diffcreate(originalMarkdown, editor.innerText);
       console.log(JSON.stringify(patch));
-      // Save to our wiki page with the current timestamp
-      const timestamp = new Date().getTime();
-      db.collection('wikipages')
-          .doc(pagename)
-          .collection('deltas')
-          .doc(`${timestamp}`)
-          .set({
-            delta: JSON.stringify(patch),
-            commit: commit.innerText,
-            authorId: firebase.auth().currentUser.uid,
-            authorName: firebase.auth().currentUser.displayName,
-          }).then((docRef) => {
-            console.log(`Document updated @${timestamp}`);
-          });
-      // Update our wiki metadata
-      db.collection('wikipages')
-          .doc(pagename)
-          .update({
-            title: title.innerText,
-            lastupdated: timestamp,
-          }).then((docRef) => {
-            console.info('Updated METADATA');
-          });
-      // Return to viewer
-      cancel.click();
+      save.innerText = 'Saving...'; // Indicate progress
+
+      db.runTransaction((transaction) => {
+        // Save to our wiki page with the current timestamp
+        const timestamp = new Date().getTime();
+
+        const dbRef = db.collection('wikipages')
+            .doc(pagename)
+            .collection('deltas')
+            .doc(`${timestamp}`);
+        const metadataRef = db.collection('wikipages')
+            .doc(pagename);
+
+        transaction.set(dbRef, {
+          delta: JSON.stringify(patch),
+          commit: commit.innerText,
+          pageTitle: title.innerText,
+          authorId: firebase.auth().currentUser.uid,
+          authorName: firebase.auth().currentUser.displayName,
+        });
+        transaction.update(metadataRef, {
+          title: title.innerText,
+          lastupdated: timestamp,
+        });
+        return Promise.resolve();
+      }).then(() => {
+        console.log(`Document updated`);
+        // Return to viewer
+        cancel.click();
+      }).catch((error) => {
+        console.error('Update failed:', error);
+      });
     };
+
     forceUnlock.onclick = () => {
       db.collection('wikipages')
           .doc(pagename)
@@ -396,6 +405,7 @@ function loadWikiPage(pagename) {
             console.info('Unlocked page for editing');
           });
     };
+
     cancel.onclick = () => {
       contentEditor.style.display = 'none';
       body.style.display = 'inline-block';
@@ -405,6 +415,7 @@ function loadWikiPage(pagename) {
         editing: false,
       });
     };
+
     editor.onkeyup = () => {
       // Render live preview
       renderWikiData(editor.innerText)

@@ -38,6 +38,7 @@ Powered by Firestore!
                     * commit = "Some change reason"
                     * authorId = "Identifier of a user"
                     * authorName = "Display name of the user"
+                    * pageTitle = "The current title of the page"
 
 ## License
 See `LICENSE`.
