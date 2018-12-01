@@ -15,12 +15,12 @@ Powered by Firestore!
 ## Setup
 * Create a Firebase project
     * Setup Firestore and authentication
-* Run `npm install`
-* Run `npm run create-firebase-config`
-* Run `npm run build-wiki`
+* Run `yarn`
+* Run `yarn create-firebase-config`
+* Run `yarn build-wiki`
 * Run `firebase init` and select **Hosting** for your project
-* Deploy with `npm run serve`
-    * Or develop locally with `npm run serve-local`
+* Deploy with `yarn serve`
+    * Or develop locally with `yarn serve-local`
 
 **Note**: If you are deploying to a system with git, you should remove `dist/` from `.gitignore` and commit the `main.js` file.
 
@@ -36,6 +36,8 @@ Powered by Firestore!
                 <id>
                     * delta = "[]" (JSON stringified changes array)
                     * commit = "Some change reason"
+                    * authorId = "Identifier of a user"
+                    * authorName = "Display name of the user"
 
 ## License
 See `LICENSE`.
